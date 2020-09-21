@@ -66,3 +66,21 @@ pulse_df = read_sas("./data/public_pulse_data.sas7bdat")
 pulse_df
 ```
 
+## Comparison w base r
+
+what about? read.csv --> NO!!
+  --> thats directly from r and weird
+  
+```{r}
+litters_base = read.csv("data/FAS_litters.csv")
+litters_readr = read_csv("data/FAS_litters.csv")
+
+litters_base
+##this one kinda sucks
+
+litters_readr 
+##this one is better/easier to look at
+##DONT USE THE DOT CSV ONLY USE UNDERSCORE CSV!!!!
+```
+
+
