@@ -36,3 +36,12 @@ tail(litters_df)
 skimr::skim(litters_df)
 ```
 
+
+##Options to read CSV
+
+```{r}
+litters_df = read_csv("./data/FAS_litters.csv", skip = 10, col_names = F, na = c("", "NA", ".", 999))
+#Helps you say ignore the missing data using the "" na funct.
+#?readcsv() has more info
+```
+

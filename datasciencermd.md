@@ -132,3 +132,26 @@ Data summary
 | pups\_born\_alive |          0 |           1.00 |  7.35 | 1.76 |  3.0 |  6.00 |  8.00 |  8.00 | 11.0 | ▁▃▂▇▁ |
 | pups\_dead\_birth |          0 |           1.00 |  0.33 | 0.75 |  0.0 |  0.00 |  0.00 |  0.00 |  4.0 | ▇▂▁▁▁ |
 | pups\_survive     |          0 |           1.00 |  6.41 | 2.05 |  1.0 |  5.00 |  7.00 |  8.00 |  9.0 | ▁▃▂▇▇ |
+
+\#\#Options to read CSV
+
+``` r
+litters_df = read_csv("./data/FAS_litters.csv", skip = 10, col_names = F, na = c("", "NA", ".", 999))
+```
+
+    ## Parsed with column specification:
+    ## cols(
+    ##   X1 = col_character(),
+    ##   X2 = col_character(),
+    ##   X3 = col_double(),
+    ##   X4 = col_double(),
+    ##   X5 = col_double(),
+    ##   X6 = col_double(),
+    ##   X7 = col_double(),
+    ##   X8 = col_double()
+    ## )
+
+``` r
+#Helps you say ignore the missing data using the "" na funct.
+#?readcsv() has more info
+```
