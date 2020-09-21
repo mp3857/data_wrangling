@@ -83,4 +83,12 @@ litters_readr
 ##DONT USE THE DOT CSV ONLY USE UNDERSCORE CSV!!!!
 ```
 
+##Exporting data
+
+Export mlb sub-table
+mlb_df tells you file type?
+
+```{r}
+write_csv(mlb_df, "./data/mlb_subtable.csv")
+```
 

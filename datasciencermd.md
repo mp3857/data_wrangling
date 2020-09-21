@@ -360,3 +360,11 @@ litters_readr
 ##this one is better/easier to look at
 ##DONT USE THE DOT CSV ONLY USE UNDERSCORE CSV!!!!
 ```
+
+\#\#Exporting data
+
+Export mlb sub-table mlb\_df tells you file type?
+
+``` r
+write_csv(mlb_df, "./data/mlb_subtable.csv")
+```
