@@ -40,4 +40,7 @@ litters_df = read_csv("./data/FAS_litters.csv")
 
 ``` r
 #make sure you make a folder in your directory with all of the data
+litters_df = janitor::clean_names(litters_df)
 ```
+
+## Take a look at the data
