@@ -14,3 +14,44 @@ litters_df = read_csv("./data/FAS_litters.csv")
 litters_df = janitor::clean_names(litters_df)
 ```
 
+## 'select'
+
+```{r}
+#cool if you only want some columns but not others
+select(litters_df, group, litter_number, gd0_weight)
+#specify a selection of columns using a colon
+select(litters_df, gd0_weight: gd_of_birth)
+#specify what you want to lose
+select(litters_df, -litter_number)
+```
+
+Renaming columns
+
+```{r}
+#write what you are renaming it to first
+select(litters_df, GROUP = group, LITTer_NUmBer = litter_number)
+```
+
+can also rename without using select
+```{r}
+rename(litters_df, GROUP = group, LITTer_NUmBer = litter_number)
+```
+
+select helpers below   ?select_helpers
+ selecting things you know you want to keep from litters dataframe everything that starts with
+
+```{r}
+select(litters_df, starts_with("gd"))
+```
+
+
+```{r}
+select(litters_df, litter_number, everything())
+```
+
+```{r}
+relocate(litters_df, litter_number)
+```
+
+Key function is SELECT, these other ones above can be useful too
+
