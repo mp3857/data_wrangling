@@ -8,3 +8,48 @@ output: github_document
 library(tidyverse)
 ```
 
+## pivot_longer
+
+Load the PULSE data
+
+```{r}
+#doing sas load so you use haven but only need it once so do the :: not the library
+pulse_data = 
+  haven::read_sas("./data/public_pulse_data.sas7bdat") %>% 
+  janitor::clean_names()
+```
+
+WIDE format to LONG format
+
+```{r}
+pulse_data_tidy = 
+  pulse_data %>% 
+  pivot_longer(
+    bdi_score_bl:bdi_score_12m,
+    names_to = "visit",
+    names_prefix = "bdi_score_",
+    values_to = "bdi"
+  )
+
+#pivot longer makes columns that are too wide longer
+# this one specifies which rows you want bdi_score_bl:bdi_score_12m
+#this part says heres the new name for the new thing  names_to = 
+#this part deletes the unnecessary info bdi_score_ names_prefix = "bdi_score_",
+```
+
+```{r}
+#rewrite combine and extend to add mutate step
+pulse_data = 
+  haven::read_sas("./data/public_pulse_data.sas7bdat") %>% 
+  janitor::clean_names() %>% 
+ pivot_longer(
+    bdi_score_bl:bdi_score_12m,
+    names_to = "visit",
+    names_prefix = "bdi_score_",
+    values_to = "bdi"
+  ) %>% 
+  relocate(id, visit) %>% 
+  mutate(visit = recode(visit, "bl" = "00m"))
+
+```
+
