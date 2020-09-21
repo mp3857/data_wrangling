@@ -105,4 +105,40 @@ mutate(
 #group portion changes an existing variable. In this case to lowercase. 
 ```
 
+## 'arrange'
+
+```{r}
+#goal is to put things in order
+arrange(litters_df, pups_born_alive)
+```
+
+## '%>%'
+
+```{r}
+#import dataset (read in dataset)
+litters_data_raw = read_csv("./data/FAS_litters.csv")
+#then clean names
+litters_clean_name = janitor::clean_names(litters_data_raw)
+#and then select some variables
+litters_data_selected = select(litters_clean_name, -pups_survive)
+#and then mutate
+litters_mutated =  mutate(litters_data_selected, wt_gain = gd18_weight - gd0_weight)
+#above code line added a column at the end with the new variable
+#and then filter and drop rows containing missing values for the variable gd0_weight
+litters_without_missing = drop_na(litters_mutated, gd0_weight)
+```
+
+NOW USE THE PIPE OPERATOR INSTEAD OF NESTING
+
+```{r}
+litters_df = 
+  read_csv("./data/FAS_litters.csv") %>% 
+  janitor::clean_names() %>% 
+  select(-pups_survive) %>% 
+  mutate(wt_gain = gd18_weight - gd0_weight) %>% 
+  drop_na(dg0_weight)
+# %>%  HOTKEYS => shift, command, m
+# Above does read in data and then clean names. 
+# Don't have to repeat anything because it auto selects everything above after the first three steps
+```
 
