@@ -5,8 +5,18 @@ output: github_document
 
 # Section 1
 
-```{r}
+```{r setup}
 library(tidyverse)
 ```
 
-# Section 2
+## Read in some data
+
+Read in the litters dataset.
+
+```{r}
+litters_df = read_csv("./data/FAS_litters.csv")
+#make sure you make a folder in your directory with all of the data
+```
+
+
+
