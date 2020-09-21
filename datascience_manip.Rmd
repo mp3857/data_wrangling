@@ -41,9 +41,9 @@ select helpers below   ?select_helpers
  selecting things you know you want to keep from litters dataframe everything that starts with
 
 ```{r}
+#select operates on columns
 select(litters_df, starts_with("gd"))
 ```
-
 
 ```{r}
 select(litters_df, litter_number, everything())
@@ -54,4 +54,43 @@ relocate(litters_df, litter_number)
 ```
 
 Key function is SELECT, these other ones above can be useful too
+
+## 'filter' :)
+
+```{r}
+#filter operates on rows
+#filter is hard because you can't give it just a variable like with 'select'. You have to give it conditions (T/F)--> true means keep the rows.
+filter(litters_df, gd0_weight < 22)
+#Above command gives you gestational weight of the mother when it is under 22 lbs on the first day of pregnancy
+filter(litters_df, gd0_weight >= 22)
+```
+
+```{r}
+filter(litters_df, gd_of_birth == 20)
+#this is asking a question to test for equality. Do this when it is equal to 20. DOUBLE ==
+```
+
+```{r}
+filter(litters_df, !(gd_of_birth == 20))
+#this is asking the opposite question. Give me all the things when it is not equal to 20. !()
+#can also do filter(litters_df, gd_of_birth != 20)     but this isn't great for complicated variable stuff
+```
+
+```{r}
+filter(litters_df, gd0_weight == 20, gd_of_birth == 20)
+```
+
+```{r}
+filter(litters_df, group == "Con7")
+```
+
+```{r}
+filter(litters_df, group == "Mod8")
+```
+
+```{r}
+#This does either Con7 OR Mod8 rows 
+#'c' joins them
+filter(litters_df, group %in% c("Mod8","Con7"))
+```
 
